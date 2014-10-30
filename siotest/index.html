@@ -1,0 +1,21 @@
+<html>
+<head>
+	<title>Socket IO Test</title>
+	<script src="/js/socket.io.js"></script>
+	<script>
+	  var socket = io('http://localhost');
+	  socket.on('news', function (data) {
+		console.log(data);
+	  });
+	  socket.on('recv', function(data) {
+	  	document.getElementById('recv').innerText = data;
+	  	document.getElementById('msg').value = ""; 
+	  });
+	</script>
+</head>
+<body>
+	<h1>Loaded ...</h1>
+	Send: <input type="text" id="msg" name="msg" onchange="socket.emit('msg',this.value);"><br>
+	Recv: <span id="recv"></span>
+</body>
+</html>

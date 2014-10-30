@@ -1,25 +1,22 @@
-var app = require('http').createServer(handler)
-var io = require('socket.io')(app);
-var fs = require('fs');
+var app = require('express')(),
+  server = require('http').Server(app),
+  io = require('socket.io')(server);
 
-app.listen(80);
+server.listen(80);
 
-function handler (req, res) {
-  fs.readFile(__dirname + '/index.html',
-  function (err, data) {
-    if (err) {
-      res.writeHead(500);
-      return res.end('Error loading index.html');
-    }
+app.get('/', function(req,res){
+  res.sendFile(__dirname + '/index.html');
+});
 
-    res.writeHead(200);
-    res.end(data);
-  });
-}
+app.get('/js/socket.io.js', function(req,res){
+  res.sendFile(__dirname + '/node_modules/socket.io/node_modules/socket.io-client/socket.io.js');
+});
 
 io.on('connection', function (socket) {
+  console.log("Connected socket");
   socket.emit('news', { hello: 'world' });
-  socket.on('my other event', function (data) {
+  socket.on('msg', function (data) {
     console.log(data);
+    io.sockets.emit('recv', data );
   });
 });

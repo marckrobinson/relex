@@ -5,5 +5,6 @@
 @if not exist "siotest\node_modules" (
     pushd siotest
     npm install socket.io
+    npm install express
     popd
 )
