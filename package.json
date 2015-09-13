@@ -1,0 +1,20 @@
+{
+  "name": "RelEx",
+  "version": "1.0.0",
+  "description": "Relocatable Extension Tests",
+  "main": "server.js",
+  "dependencies": {
+    "express": "^4.13.3"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://marckr@perfmap.scm.azurewebsites.net:443/perfmap.git"
+  },
+  "author": "Marck Robinson",
+  "license": "ISC"
+}
